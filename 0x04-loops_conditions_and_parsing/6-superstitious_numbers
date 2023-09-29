@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+#The script that displays numbers from 1 to 20 
+i=1
+while (( i < 21 ))
+do
+	echo $i
+	case "$i" in
+		4) echo "bad luck from china";;
+		9) echo "bad luck from japan";;
+		17) echo "bad luck from italy";;
+	esac
+	((i++))
+done
