@@ -1,6 +1,6 @@
-#!/urs/bin/bin/env bash
+#!/usr/bin/env bash
 #This script is displaying "Best School" 10 here
-for ((i = 1; i <= 10; i++))
+for _ in {1..10}
 do
 	echo "Best School"
 done
