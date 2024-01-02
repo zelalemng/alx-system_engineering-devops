@@ -3,26 +3,20 @@
 Python script that, using this REST API, for a given employee ID,
 returns information about his/her TODO list progress.
 """
-import requests
+import requests as req
 import sys
 
-if __name__ == "__main__":
-    url = "https://jsonplaceholder.typicode.com/"
 
-    employee_id =sys.argv[1]
-    user_response = requests.get(url + "users/{}".format(employee_id))
-    user = user_response.json()
-    params = {"userId": employee_id}
-    todos_response = requests.get(url + "todos", params=params)
-    todos = todos_response.json()
-    completed = []
-
-    for todo in todos:
-        if todo.get("completed") is True:
-            completed.append(todo.get("title"))
-
-    print("Employee {} is done with tasks({}/{})".format(user.get("name").
-        len(completed), len(todos)))
-
-    for complete in completed:
-        print("\t {}".format(complete))
+user_id = sys.argv[1]
+url = "https://jsonplaceholder.typicode.com/users/{}".format(user_id)
+user_todo_url = "https://jsonplaceholder.typicode.com/users/{}/todos".format(user_id)
+resp = req.get(url).json()
+user_name = resp.get("name")
+count = 0
+user_todos = req.get(user_todo_url).json()
+total_todos = len(user_todos)
+for todo in user_todos:
+    if todo.get("completed"):
+        count += 1
+print(f"Employee {user_name} is done with tasks({count}/{total_todos})")
+[print(f"\t {todos.get('title')}") for todos in user_todos if todos.get("completed")]
