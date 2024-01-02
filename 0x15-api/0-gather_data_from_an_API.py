@@ -9,7 +9,8 @@ import sys
 
 user_id = sys.argv[1]
 url = "https://jsonplaceholder.typicode.com/users/{}".format(user_id)
-user_todo_url = "https://jsonplaceholder.typicode.com/users/{}/todos".format(user_id)
+user_todo_url =
+"https://jsonplaceholder.typicode.com/users/{}/todos".format(user_id)
 resp = req.get(url).json()
 user_name = resp.get("name")
 count = 0
@@ -19,4 +20,6 @@ for todo in user_todos:
     if todo.get("completed"):
         count += 1
 print(f"Employee {user_name} is done with tasks({count}/{total_todos})")
-[print(f"\t {todos.get('title')}") for todos in user_todos if todos.get("completed")]
+[print(
+    f"\t {todos.get('title')}"
+    ) for todos in user_todos if todos.get("completed")]
